@@ -1,36 +1,30 @@
-import {
-  IonCard,
-  IonCardHeader,
-  IonCardTitle,
-  IonCardContent,
-  IonList,
-  IonItem,
-} from "@ionic/react";
+import { IonCard } from "@ionic/react";
+
 import { useState, useEffect } from "react";
 
-interface Comment {
-  id: number;
-  postId: number;
-  name: string;
-  email: string;
+import Posts from "./Posts";
+import Comments from "./Comments";
+
+export interface Comment {
   body: string;
+  email?: string;
+  id?: number;
+  name?: string;
+  postId?: number;
 }
 
 interface Post {
-  id: number;
-  title: string;
-  body: string;
+  body?: string;
   comments: Comment[];
+  id?: number;
+  title: string;
+  userId?: number;
 }
 
-interface PostsContainerProps {}
+const URL: string =
+  "https://jsonplaceholder.typicode.com/posts?_embed=comments&_limit=20";
 
-const URL =
-  "https://jsonplaceholder.typicode.com/posts?_embed=comments&_limit=10";
-
-const IMAGE_URL = "https://ionicframework.com/docs/img/demos/card-media.png";
-
-const PostsContainer: React.FC<PostsContainerProps> = () => {
+const PostsContainer: React.FC = () => {
   const [posts, setPosts] = useState<Post[]>([]);
 
   useEffect(() => {
@@ -38,37 +32,14 @@ const PostsContainer: React.FC<PostsContainerProps> = () => {
       .then((response) => response.json())
       .then((data) => setPosts(data));
   }, []);
-  console.log("posts", posts);
 
   return (
     <>
-      {posts.map(({ id, title, comments }, index) => (
-        <>
-          <IonCard key={id}>
-            <IonCardHeader>
-              <IonCardTitle class="ion-padding-bottom">{title}</IonCardTitle>
-              <img alt="Silhouette of mountains" src={IMAGE_URL} />
-              <IonCardContent class="ion-text-end">
-                {comments.length === 1
-                  ? `${comments.length} comment`
-                  : `${comments.length} comments`}
-              </IonCardContent>
-            </IonCardHeader>
-            <IonCardContent>
-              <IonList inset={true}>
-                {comments.map(({ body }, idx) => (
-                  <IonItem
-                    key={idx}
-                    class="ion-padding-bottom"
-                    lines={idx === comments.length - 1 ? "none" : "full"}
-                  >
-                    {body}
-                  </IonItem>
-                ))}
-              </IonList>
-            </IonCardContent>
-          </IonCard>
-        </>
+      {posts.map(({ id, title, comments }) => (
+        <IonCard key={id}>
+          <Posts title={title} comments={comments} />
+          <Comments comments={comments} />
+        </IonCard>
       ))}
     </>
   );

@@ -36,7 +36,6 @@ const App: React.FC = () => (
         <IonTitle>Moonstar</IonTitle>
       </IonToolbar>
     </IonHeader>
-
     <IonContent className="ion-padding">
       <PostsContainer />
     </IonContent>

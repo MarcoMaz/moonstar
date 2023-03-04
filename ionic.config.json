@@ -1,0 +1,7 @@
+{
+  "name": "moonstar",
+  "integrations": {
+    "capacitor": {}
+  },
+  "type": "react"
+}

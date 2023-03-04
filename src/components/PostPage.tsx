@@ -3,6 +3,8 @@ import {
   IonCardHeader,
   IonCardTitle,
   IonCardContent,
+  IonList,
+  IonItem,
 } from "@ionic/react";
 import { useState, useEffect } from "react";
 
@@ -21,9 +23,7 @@ interface Post {
   comments: Comment[];
 }
 
-interface PostPageProps {
-
-}
+interface PostPageProps {}
 
 const URL =
   "https://jsonplaceholder.typicode.com/posts?_embed=comments&_limit=10";
@@ -43,36 +43,35 @@ const PostPage: React.FC<PostPageProps> = () => {
   return (
     <>
       {posts.map(({ id, title, comments }, index) => (
-        <IonCard key={id}>
-          <IonCardHeader>
-            <IonCardTitle class="ion-padding-bottom">{title}</IonCardTitle>
-            <img alt="Silhouette of mountains" src={IMAGE_URL} />
-            <IonCardContent class="ion-text-end">
-              {comments.length === 1
-                ? `${comments.length} comment`
-                : `${comments.length} comments`}
+        <>
+          <IonCard key={id}>
+            <IonCardHeader>
+              <IonCardTitle class="ion-padding-bottom">{title}</IonCardTitle>
+              <img alt="Silhouette of mountains" src={IMAGE_URL} />
+              <IonCardContent class="ion-text-end">
+                {comments.length === 1
+                  ? `${comments.length} comment`
+                  : `${comments.length} comments`}
+              </IonCardContent>
+            </IonCardHeader>
+            <IonCardContent>
+              <IonList inset={true}>
+                {comments.map(({ body }, idx) => (
+                  <IonItem
+                    key={idx}
+                    class="ion-padding-bottom"
+                    lines={idx === comments.length - 1 ? "none" : "full"}
+                  >
+                    {body}
+                  </IonItem>
+                ))}
+              </IonList>
             </IonCardContent>
-          </IonCardHeader>
-        </IonCard>
+          </IonCard>
+        </>
       ))}
     </>
   );
 };
 
 export default PostPage;
-
-/*
- <>
-        <ul>
-          {posts.map((post) => (
-            <li>
-              <strong>{post.title}</strong>
-              <ul>
-                {post.comments.map((comment: any) => (
-                  <li key={comment.id}>{comment.body}</li>
-                ))}
-              </ul>
-            </li>
-          ))}
-        </ul>{" "}
-      </> */

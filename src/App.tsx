@@ -25,19 +25,20 @@ import "@ionic/react/css/display.css";
 
 /* Theme variables */
 import "./theme/variables.css";
+import PostPage from "./components/PostPage";
 
 setupIonicReact();
 
 const App: React.FC = () => (
   <IonApp>
-    <IonHeader>
+    <IonHeader className="ion-padding">
       <IonToolbar>
-        <IonTitle>Moonstar List</IonTitle>
+        <IonTitle>Moonstar</IonTitle>
       </IonToolbar>
     </IonHeader>
 
     <IonContent className="ion-padding">
-      <h1>Main Content</h1>
+      <PostPage />
     </IonContent>
   </IonApp>
 );

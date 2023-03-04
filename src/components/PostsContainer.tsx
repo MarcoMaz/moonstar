@@ -1,4 +1,4 @@
-import { IonCard } from "@ionic/react";
+import { IonGrid, IonCard, IonCol, IonRow } from "@ionic/react";
 import { useState, useEffect } from "react";
 
 import Posts from "./Posts/Posts";
@@ -33,14 +33,18 @@ const PostsContainer: React.FC = () => {
   }, []);
 
   return (
-    <>
+    <IonGrid>
       {posts.map(({ id, title, comments }) => (
-        <IonCard key={id}>
-          <Posts title={title} comments={comments} />
-          <Comments comments={comments} />
-        </IonCard>
+        <IonRow key={id} className="ion-justify-content-center">
+          <IonCol size="12" size-md="6" >
+            <IonCard key={id}>
+              <Posts title={title} comments={comments} />
+              <Comments comments={comments} />
+            </IonCard>
+          </IonCol>
+        </IonRow>
       ))}
-    </>
+    </IonGrid>
   );
 };
 

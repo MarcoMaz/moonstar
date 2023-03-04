@@ -1,5 +1,5 @@
 import { IonCardHeader, IonCardTitle, IonCardContent } from "@ionic/react";
-import { Comment } from "./PostsContainer";
+import { Comment } from "../PostsContainer";
 
 const IMAGE_URL = "https://ionicframework.com/docs/img/demos/card-media.png";
 

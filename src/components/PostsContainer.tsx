@@ -1,8 +1,8 @@
 import { IonCard } from "@ionic/react";
 import { useState, useEffect } from "react";
 
-import Posts from "./Posts";
-import Comments from "./Comments";
+import Posts from "./Posts/Posts";
+import Comments from "./Comments/Comments";
 
 const API_URL: string =
   "https://jsonplaceholder.typicode.com/posts?_embed=comments&_limit=20";

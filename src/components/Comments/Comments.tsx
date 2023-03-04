@@ -1,5 +1,5 @@
 import { IonCardContent, IonList, IonItem } from "@ionic/react";
-import { Comment } from "./PostsContainer";
+import { Comment } from "../PostsContainer";
 
 interface CommentsProps {
   comments: Comment[];

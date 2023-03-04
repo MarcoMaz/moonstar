@@ -1,15 +1,15 @@
 import { IonCardHeader, IonCardTitle, IonCardContent } from "@ionic/react";
-
 import { Comment } from "./PostsContainer";
-
-interface PostsProps {
-  title?: string;
-  comments: Comment[];
-}
 
 const IMAGE_URL = "https://ionicframework.com/docs/img/demos/card-media.png";
 
+interface PostsProps {
+  title: string;
+  comments: Comment[];
+}
+
 const Posts: React.FC<PostsProps> = ({ title, comments }) => {
+  // handle plural case of the word "comment"
   const numberOfComments =
     comments.length === 1
       ? `${comments.length} comment`

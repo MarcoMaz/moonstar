@@ -23,14 +23,14 @@ interface Post {
   comments: Comment[];
 }
 
-interface PostPageProps {}
+interface PostsContainerProps {}
 
 const URL =
   "https://jsonplaceholder.typicode.com/posts?_embed=comments&_limit=10";
 
 const IMAGE_URL = "https://ionicframework.com/docs/img/demos/card-media.png";
 
-const PostPage: React.FC<PostPageProps> = () => {
+const PostsContainer: React.FC<PostsContainerProps> = () => {
   const [posts, setPosts] = useState<Post[]>([]);
 
   useEffect(() => {
@@ -74,4 +74,4 @@ const PostPage: React.FC<PostPageProps> = () => {
   );
 };
 
-export default PostPage;
+export default PostsContainer;
